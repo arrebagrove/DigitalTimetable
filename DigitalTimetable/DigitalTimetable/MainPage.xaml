@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DigitalTimetable"
+             x:Class="DigitalTimetable.MainPage">
+  
+   <Grid ColumnSpacing="0" RowSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="2*" />
+      <RowDefinition Height="2*" />
+      <RowDefinition Height="2*" />
+      <RowDefinition Height="2*" />
+      <RowDefinition Height="*" />
+     
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+   
+     
+    <Label Grid.Row="0" XAlign="Center" Grid.Column="1" Text="THURSDAY"></Label>
+     
+    <Label Grid.Row="1" Grid.Column="1" Text="Hello - 1"></Label>
+    <Label Grid.Row="2" Grid.Column="1" Text="Hello - 2"></Label>
+    <Label Grid.Row="3" Grid.Column="1" Text="Hello - 3"></Label>
+    <Label Grid.Row="4" Grid.Column="1" Text="Hello - 4"></Label>
+    <Label Grid.Row="5" Grid.Column="1" Text="Hello - 4"></Label>
+  </Grid>
+
+
+</ContentPage>
