@@ -28,7 +28,7 @@ namespace DigitalTimetable
         // Miscellanious properties
 
         public string Abbreviation { get; private set; }
-        public SubjectUIElement Element { get; private set; } // auto-generated 
+        
 
 
         public Subject(string n)
@@ -38,15 +38,23 @@ namespace DigitalTimetable
         }
     }
 
-    class Lesson : Subject
+    class Lesson : Subject // Extends subject class by adding times/dates
     {
-        public Lesson(string n, int p, int d) : base(n)
+        public Lesson(string name, int period, int day, string where, string teacher) : base(name)
         {
-            Period = p; Day = d;
+            Period = period; Day = day; Location = where; Teacher = teacher;
         }
 
         public int Period { get; set; }
         public int Day { get; set; }
+
+        public string Location { get; set; }
+        public string Teacher { get; set; }
+
+        public static SubjectUIElement GenerateUIElement()
+        {
+            return new SubjectUIElement(this)
+        }
     }
 
     //hierarchy: subject class spawns ui elements
