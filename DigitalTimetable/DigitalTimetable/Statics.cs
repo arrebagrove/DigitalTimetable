@@ -22,7 +22,7 @@ namespace DigitalTimetable
             return output.Substring(0, 3);
         }
 
-        public static Color GetSubjColor(this string s)
+        public static Color GetSubjColor(this string s) // Generate a colour from a string of three letters
         {
             if (s.Length > 3)
             {
@@ -44,7 +44,7 @@ namespace DigitalTimetable
             return output;
         }
 
-        public static int Clamp(this int i, int max, int min)
+        public static int Clamp(this int i, int max, int min) // This extension method will cap a value in between two integers.
         {
             int limitTop = Math.Min(i, max); // not like the film format though
             int limitBottom = Math.Max(i, min);

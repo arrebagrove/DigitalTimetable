@@ -23,6 +23,8 @@ namespace DigitalTimetable
             {
                 _name = value; // update backing field
                 Abbreviation = value.GetSubjAbbreviation(); // Generate a new abbreviation automatically, saves hassle
+                if (!ColourOverriden)
+                    Colour = value.GetSubjColor(); // see above
             }
         }
 
@@ -30,13 +32,25 @@ namespace DigitalTimetable
 
         public string Abbreviation { get; private set; } // Since we auto-generate the abbreviation, there should be no need to change it manually.
 
+        public Color Colour { get; private set; }
+        // This was also auto-generated, but is in the base class as I want users to be able to change subject colours.
+        // Also, my British spelling finally came in handy as I can name it something useful without it being a type. Yay!
+
+        private bool ColourOverriden; // We can use this to not update colours in Name accessors if the user has specified another colour.
+
         public Subject(string n)
         {
             Name = n; // Initialize properties.
+        }     
+
+        public Subject (string name, Color overrideColour)
+        {
+            Name = name; Colour = overrideColour;
+            ColourOverriden = true;
         }
     }
 
-    class Lesson : Subject // Extends subject class by adding times/dates
+    class Lesson // Extends subject class by adding times/dates
     {
 
         public int Period { get; set; }
@@ -45,9 +59,12 @@ namespace DigitalTimetable
         public string Location { get; set; }
         public string Teacher { get; set; }
 
-        public Lesson(string name, int period, int day, string where, string teacher) : base(name)
+        public Subject Parent { get; set; }
+
+        public Lesson(Subject parent, int period, int day, string where, string teacher)
         {
             Period = period; Day = day; Location = where; Teacher = teacher;
+            Parent = parent;
         }
 
         public SubjectUIElement GenerateUIElement()
@@ -67,13 +84,16 @@ namespace DigitalTimetable
         public Label MainLabel { get; set; }
         public StackLayout Backbone { get; private set; }
 
-        public Lesson Parent { get; set; }
+        public Lesson LParent { get; set; }
+        public Subject SParent { get; set; } // to avoid calls such as Parent.Parent which are confusing
 
         public SubjectUIElement(Lesson parent)
         {
-            Parent = parent;
-            MainLabel.Text = parent.Abbreviation;
-            Backbone.BackgroundColor = parent.Abbreviation.GetSubjColor();
+            LParent = parent;
+            SParent = parent.Parent;
+
+            MainLabel.Text = SParent.Abbreviation;
+            Backbone.BackgroundColor = SParent.Colour;
         }
     }
 }
