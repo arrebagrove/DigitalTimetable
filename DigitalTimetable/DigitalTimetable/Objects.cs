@@ -9,7 +9,6 @@ namespace DigitalTimetable
 {
     class Subject
     {
-        
 
         private string _name; // backing field. See below for explanation.
         public string Name
@@ -38,6 +37,8 @@ namespace DigitalTimetable
 
         private bool ColourOverriden; // We can use this to not update colours in Name accessors if the user has specified another colour.
 
+        // Constructors
+
         public Subject(string n)
         {
             Name = n; // Initialize properties.
@@ -47,6 +48,14 @@ namespace DigitalTimetable
         {
             Name = name; Colour = overrideColour;
             ColourOverriden = true;
+        }
+
+        // Methods
+
+        public Lesson CreateLesson(int period, int day, string location, string teacher)
+        {
+            return new Lesson(this, period, day, location, teacher);
+            // Create a lesson given some extra information
         }
     }
 
