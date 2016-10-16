@@ -76,9 +76,9 @@ namespace DigitalTimetable
             Parent = parent;
         }
 
-        public SubjectUIElement GenerateUIElement()
+        public LessonUIElement GenerateUIElement()
         {
-            return new SubjectUIElement(this);
+            return new LessonUIElement(this);
             // We have a method that generates UI elements rather than a simple property because this means that
             // the UI elements are not tied to any given instance of a Lesson. This could be helpful if we were to
             // implement multiple ways to view a timetable, for instance.
@@ -87,7 +87,7 @@ namespace DigitalTimetable
 
     //hierarchy: subject class spawns ui elements
 
-    class SubjectUIElement
+    class LessonUIElement
     {
         
         public Label MainLabel { get; set; }
@@ -96,10 +96,10 @@ namespace DigitalTimetable
         public Lesson LParent { get; set; }
         public Subject SParent { get; set; } // to avoid calls such as Parent.Parent which are confusing
 
-        public SubjectUIElement(Lesson parent)
+        public LessonUIElement(Lesson parent)
         {
             LParent = parent;
-            SParent = parent.Parent;
+            SParent = parent.Parent; // well, you have to do it once but it's a necessary sacrifice.
 
             MainLabel.Text = SParent.Abbreviation;
             Backbone.BackgroundColor = SParent.Colour;
