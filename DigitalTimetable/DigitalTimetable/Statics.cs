@@ -12,10 +12,10 @@ namespace DigitalTimetable
     {
         public static char[] alpha = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ".ToCharArray();
 
-        public static string GetSubjAbbreviation(this string s)
+        public static string GetSubjAbbreviation(this string input)
         {
             Regex abbrRegex = new Regex(@"([A-Z])([a-z]+$)?");
-            MatchCollection matchCollection = abbrRegex.Matches(s);
+            MatchCollection matchCollection = abbrRegex.Matches(input);
             string output = string.Join("", from Match match in matchCollection select match.Value);
 
             

@@ -18,7 +18,7 @@ namespace DigitalTimetable
 
         protected override void OnStart()
         {
-            //Subject FurtherMaths = new Subject("Further Maths", 4, 4);
+            
         }
 
         protected override void OnSleep()
