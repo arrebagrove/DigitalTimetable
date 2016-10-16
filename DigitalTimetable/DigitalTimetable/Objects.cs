@@ -22,8 +22,9 @@ namespace DigitalTimetable
             {
                 _name = value; // update backing field
                 Abbreviation = value.GetSubjAbbreviation(); // Generate a new abbreviation automatically, saves hassle
+                
                 if (!ColourOverriden)
-                    Colour = value.GetSubjColor(); // see above
+                    Colour = Abbreviation.GetSubjColor(); // see above
             }
         }
 
@@ -98,11 +99,21 @@ namespace DigitalTimetable
 
         public LessonUIElement(Lesson parent)
         {
+            init();
+            
+
             LParent = parent;
             SParent = parent.Parent; // well, you have to do it once but it's a necessary sacrifice.
 
             MainLabel.Text = SParent.Abbreviation;
-            Backbone.BackgroundColor = SParent.Colour;
+            Backbone.BackgroundColor = SParent.Colour; 
+            
+        }
+
+        public void init() // note to self: check that you initialize the UI elements before going on a goose chase for a nullreferenceexception
+        {
+            MainLabel = new Label();
+            Backbone = new StackLayout();
         }
     }
 }

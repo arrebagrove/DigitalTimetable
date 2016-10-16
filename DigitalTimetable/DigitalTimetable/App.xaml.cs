@@ -18,6 +18,9 @@ namespace DigitalTimetable
 
         protected override void OnStart()
         {
+            Subject FM = new Subject("Further Maths");
+            Lesson FM1 = FM.CreateLesson(4, 4, "a", "b");
+            LessonUIElement FM1_UI = FM1.GenerateUIElement();
             
         }
 
